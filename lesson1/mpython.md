@@ -1,9 +1,9 @@
 ---
 layout: default
 title: MicroPython for Beginners
-nav_order: 4
+nav_order: 1
 has_toc: false # on by default
-has_children: true
+has_children: false
 comments: true
 usetocbot: true
 ---

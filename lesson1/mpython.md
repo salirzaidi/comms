@@ -18,3 +18,4 @@ usetocbot: true
 ---
 
 ## Blinking LED
+Blinking an LED is the equivalent of "hello world" program for embedded developers. The main learning objective of this exercise is to familiarise you with input/output on embedded boards using MicroPython. 

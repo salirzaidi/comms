@@ -25,3 +25,6 @@ The very first step for labs today is installation of the interactive developmen
 <video controls width="500" height="500">
   <source src="./global_assets/thonnyinstall.webm" type="video/webm" />
 </video>
+
+A quick overview of the key functions and areas you want to be looking at is shown in screenshot below:
+![Thonny IDE](./global_assets/Thonny.jpg)

@@ -18,7 +18,7 @@ usetocbot: true
 ---
 
 ## Blinking LED
-Blinking an LED is the equivalent of "hello world" program for embedded developers. The main learning objective of this exercise is to familiarise you with input/output on embedded boards using MicroPython.
+Blinking an LED is the equivalent of "hello world" program for embedded developers. The main **learning objective** of this exercise is to familiarise you with input/output on embedded boards using MicroPython.
 
 {: .note }
 I am fully aware of how dull my students find blinking bunch of LEDs. Bear with me for this lab and we will not only learn the syntax but also see what is possible by merely blinking LEDs.
@@ -35,3 +35,7 @@ myPin = machine.Pin(1, machine.Pin.OUT)
 myPin.value(1)
 ```
 
+Once, you have written this code in Thonny IDE, save it as main.py on the **RP2040** device. When you try and save your script, the IDE should ask you where you want it saved using the popup as shown below. Use RP2040 as the option.
+
+ ![Screenshot of IDE](/assets/thonnyScreen1.jpg)
+ 

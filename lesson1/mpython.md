@@ -41,6 +41,6 @@ Once, you have written this code in Thonny IDE, save it as main.py on the **RP20
 
  In MicroPython, the machine module provides functions to interact with the hardware directly. Several functions provide access to hardware peripherals, e.g. timers, CPU clock, buses etc. Use this module incorrectly and it unleashes the wrath upon your hardware.  Here is the link to the documentation for the details.
 
- <span class="fs-8">
-[Link button](https://docs.micropython.org/en/latest/library/machine.html){: .btn .btn-purple }
+ <span class="fs-12">
+[MicroPython Docs](https://docs.micropython.org/en/latest/library/machine.html){: .btn .btn-purple }
 </span>

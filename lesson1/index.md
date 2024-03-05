@@ -1,7 +1,7 @@
 ---
 layout: default
 title: A Hands-on-Introduction to MicroPython
-nav_order: 1
+nav_order: 2
 has_toc: false # on by default
 has_children: false
 comments: true

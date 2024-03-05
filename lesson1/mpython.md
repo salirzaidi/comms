@@ -37,7 +37,7 @@ myPin.value(1)
 
 Once, you have written this code in Thonny IDE, save it as main.py on the **RP2040** device. When you try and save your script, the IDE should ask you where you want it saved using the popup as shown below. Use RP2040 as the option.
 
- ![Screenshot of IDE](./assets/thonnyScreen1.jpg){style="display: block; margin: 0 auto"}
+ ![Screenshot of IDE](./assets/thonnyScreen1.jpg)
 
  In MicroPython, the machine module provides functions to interact with the hardware directly. Several functions provide access to hardware peripherals, e.g. timers, CPU clock, buses etc. Use this module incorrectly and it unleashes the wrath upon your hardware.  Here is the link to the documentation for the details.
 

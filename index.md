@@ -27,8 +27,8 @@ The very first step for labs today is installation of the interactive developmen
 
 ## Flashing MicroPython Software
 After completing the installation of the Thonny IDE, our next step is completing the installation of Micropython firmware on the MakerPi RP2040 Board. Follow the following step to accomplish this task:
-1. Launch MicroPython website [website] (https://micropython.org/).
-2. Click on [Download] (https://micropython.org/download/) option from Navigation Menu.
+1. Launch MicroPython website [website](https://micropython.org/).
+2. Click on [Download](https://micropython.org/download/) option from Navigation Menu.
 3. The Download page shows, various different MCUs for which MicroPython is available. From MCU section click on RP2040.
 ![Screenshot of Installation](./global_assets/mpythoninstall.jpg)
 4. From options select Pico Raspberry Pi. 

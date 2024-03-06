@@ -6,6 +6,7 @@ has_toc: false # on by default
 has_children: false
 comments: true
 usetocbot: true
+parent: index
 ---
 # {{ page.title }}
 {: .no_toc }

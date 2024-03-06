@@ -21,10 +21,10 @@ usetocbot: true
 
 ## Installation of IDE 
 The very first step for labs today is installation of the interactive development envirnoment you are going to use for the coding. 
-
-<video controls width="500" height="500">
+<video controls width="400" height="400">
   <source src="./global_assets/thonnyinstall.webm" type="video/webm" />
 </video>
 
 A quick overview of the key functions and areas you want to be looking at is shown in screenshot below:
-![Thonny IDE](./global_assets/Thonny.jpg)
+
+![Thonny IDE](./global_assets/Thonny.jpg =100x20)

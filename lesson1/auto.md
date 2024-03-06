@@ -23,6 +23,9 @@ In the next episode, we aim to build a navigation and tracking system for LK's e
 
 The class you need for next lab is as follows. Please ignore this for now.
 
+![LK Mobil](./assets/vehicle.png)
+
+
 ```python
 from machine import Pin,I2C
 import math

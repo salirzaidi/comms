@@ -59,3 +59,6 @@ Some other places to find detailed account of IDE features include:
 
 
 ## Board Details and Relevant Documents
+All relevant documents are on these two pages:
+1. Github [Page](https://github.com/CytronTechnologies/MAKER-PI-RP2040?tab=readme-ov-file) for the Board
+2. Product [Page](https://www.cytron.io/p-maker-pi-rp2040-simplifying-robotics-with-raspberry-pi-rp2040) by Cytron.

@@ -6,6 +6,7 @@ has_toc: false # on by default
 has_children: false
 comments: true
 usetocbot: true
+parent: A Hands-on-Introduction to MicroPython
 ---
 # {{ page.title }}
 {: .no_toc }

@@ -134,7 +134,35 @@ Before LK's position can be transmitted over wireless wide area network. You nee
 2. The format for the packet will be as follows:
 
 **Format** 
-Initial three bits will be used for sign of the number so b0,b1,b2 are 1 if the number is negative, else 0. The next 2 bytes are for value of x, then 2 bytes for y and then 2 bytes for z.
+Initial three bytes will be used for sign of the number so b0,b1,b2 are just sign bytes with value 1 if the number is negative, else 0. The next 2 bytes are for value of x, then 2 bytes for y and then 2 bytes for z.
+Let us use the following way to deal with this
+
+```python
+data_sent = [0,0,0,0,0,0,0,0,0]
+    if(x<0):
+        data_sent[0]=1
+```
+
+3. Next add code to deal with y and z similarly.
+4. Our x,y,z values are all integers which take two bytes. We need to figure out how to split them in to two bytes. To do this use the following function in your code:
+
+```python
+def i2b(number):
+    c = (number >> 8) & 0xff
+    f = number & 0xff
+    return c,f
+```
+
+Now you can use this function to add the bytes into data_sent array as follows:
+
+```python
+x=abs(x)
+c,f=i2b(x)
+    data_sent[3] = c
+    data_sent[4] = f
+```
+
+Work out on your own how this function is operating and add code for encoding y and z values. With this you are ready to transmit the data in next lab. 
 
 
 

@@ -131,3 +131,47 @@ while True:
     print('pitch=',pitch)
     time.sleep_ms(50)
 ```
+
+```python
+from machine import Pin,I2C
+import time
+from accelerometer import ADXL345
+
+i2c = I2C(1,sda=Pin(2),scl=Pin(3), freq=10000)
+adx = ADXL345(i2c)
+
+def i2b(number):
+    c = (number >> 8) & 0xff
+    f = number & 0xff
+    return c,f
+
+while True:
+    x=adx.xValue
+    y=adx.yValue
+    z=adx.zValue
+    print('The acceleration info of x, y, z are:%d,%d,%d'%(x,y,z))
+    data_sent = [0,0,0,0,0,0,0,0,0]
+    if(x<0):
+        data_sent[0]=1
+    if(y<0):
+        data_sent[1]=1
+    if(z<0):
+        data_sent[2]=1
+    x=abs(x)
+    y=abs(y)
+    z=abs(z)
+    c,f=i2b(x)
+    data_sent[3] = c
+    data_sent[4] = f
+    c,f=i2b(y)
+    data_sent[5] = c
+    data_sent[6] = f
+    c,f=i2b(z)
+    data_sent[7] = c
+    data_sent[8] = f
+    print(bytes(data_sent))
+    roll,pitch = adx.RP_calculate(x,y,z)
+    print('roll=',roll)
+    print('pitch=',pitch)
+    time.sleep_ms(50)
+```

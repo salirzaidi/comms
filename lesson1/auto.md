@@ -126,6 +126,17 @@ while True:
 8. You have to select right COM Port and 115200 as the baud rate. See the snapshot below:
 ![Serial Monitor](../global_assets/signals.png)
 9. Now you can try a few different gestures and see the patterns.
-10. Finally, if it is of interest to you explore how you can implement Machine Learning to learn the gestures see here for instance: [TinyML] (https://dev.to/tkeyo/tinyml-machine-learning-on-esp32-with-micropython-38a6)
+10. Finally, if it is of interest to you explore how you can implement Machine Learning to learn the gestures see here for instance: [TinyML](https://dev.to/tkeyo/tinyml-machine-learning-on-esp32-with-micropython-38a6)
+
+# Transforming the data into bits
+Before LK's position can be transmitted over wireless wide area network. You need to transform x,y,z values into binary form. The values presented here are in integer format any way making your life easy. If you look into data sheet you can work out how to convert these back to proper units but we do not really need to worry about this yet.
+1. Now we need to convert this data into binary format and then store in byte array which can be transmitted. 
+2. The format for the packet will be as follows:
+
+**Format** 
+Initial three bits will be used for sign of the number so b0,b1,b2 are 1 if the number is negative, else 0. The next 2 bytes are for value of x, then 2 bytes for y and then 2 bytes for z.
+
+
+
 
 

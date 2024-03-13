@@ -41,25 +41,13 @@ Source: Sparkfun
 
 
 
+# Back to the Lab
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Your task today is to read (x,y,z) from accelerometer. Based on these values, we can calculate (roll,pitch). Follow the following steps:
+1. Create a new folder called Lab 2.
+2. Navigate to this folder from Thonny IDE.
+3. Create two new files in this folder, one called **main.py** and other called **accelerometer.py**.
+4. In **accelerometer.py** file copy the code which is provide below.
 
 ```python
 from machine import Pin,I2C
@@ -113,3 +101,31 @@ class ADXL345:
         return roll,pitch
 
 ```
+5. In **main.py** now import the ADXL345 class stored in the **accelerometer.py** like this:
+
+```python
+from accelerometer import ADXL345
+```
+6. Now write code to print (x,y,z), as well as roll and yaw from the accelerometer. Make sure you connect the accelerometer given to you to Grove port (one of the white connectors on boar) attached to GPIO2 and GPIO3. See following snippet and try to complete it:
+
+```python
+from machine import Pin,I2C
+import time
+from accelerometer import ADXL345
+
+i2c = I2C(1,sda=Pin(2),scl=Pin(3), freq=10000)
+adx = ADXL345(i2c)
+
+while True:
+   #code to print the values
+    time.sleep_ms(50)
+```
+
+
+7. Now to visualise the data, try using web serial demo here: [Web Serial](https://sekigon-gonnoc.github.io/web-serial-plotter/)
+8. You have to select right COM Port and 115200 as the baud rate. See the snapshot below:
+![Serial Monitor](../global_assets/signals.png)
+9. Now you can try a few different gestures and see the patterns.
+10. Finally, if it is of interest to you explore how you can implement Machine Learning to learn the gestures see here for instance: [TinyML] (https://dev.to/tkeyo/tinyml-machine-learning-on-esp32-with-micropython-38a6)
+
+

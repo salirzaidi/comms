@@ -113,3 +113,21 @@ while True:
     send()
     time.sleep(1)
 ```
+```python
+from machine import Pin,I2C
+import time
+from accelerometer import ADXL345
+
+i2c = I2C(1,sda=Pin(2),scl=Pin(3), freq=10000)
+adx = ADXL345(i2c)
+
+while True:
+    x=adx.xValue
+    y=adx.yValue
+    z=adx.zValue
+    print('The acceleration info of x, y, z are:%d,%d,%d'%(x,y,z))
+    roll,pitch = adx.RP_calculate(x,y,z)
+    print('roll=',roll)
+    print('pitch=',pitch)
+    time.sleep_ms(50)
+```

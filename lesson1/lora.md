@@ -17,18 +17,28 @@ usetocbot: true
 {:toc}
 ---
 
-# LoRa
-If you are superhero fan then it is no surprise that LK has several theme songs and tunes done as part of his brand identity. Besides this he can switch from light to acoustics, which propogate better under water. In this chapter, we will learn the art of creating tunes using PWM signals.
+# LoRa and LoRaWAN
+LoRa (Long Range) is radio frequency (RF) modulation technology that is suited for low power communication in Wide Area Networks (WANs). It operates in the license free Industrial, Scientific and Medical (ISM) frequency bands, for example, 915 MHz, 868 MHz, and 433 MHz. Typical coverage area for LoRa based communication is up to 3 miles in urban areas and 10 miles in rural areas. Due to its wide range and low power requirements, it is particularly well-suited for internet of things (IoT) communication where large number of low power devices send/receive small amounts of data forming a low power wide area network (LPWAN). LoRa is ideal for data transmission at a longer range compared to technologies like WiFi, Bluetooth or ZigBee making it a popular choice for sensors and actuators that operate in low power mode. 
 
-{: .note }
-Your board comes with the Buzzer is connected to GPIO22. To play a tune, you need to generate Pulse Width Modulation Signal. 
+LoRA Wide Area Network (LoRaWAN) is a Media Access Control (MAC) layer protocol built on top of LoRa modulation. It is a software layer which defines how devices use the LoRa hardware, for example when they transmit, and the format of messages. A LoRa network consists of nodes, gateways and LoRa network operators. Typically, nodes broadcast data to be picked up by gateways that forward the information to operator servers for processing.A LoRa transmitter broadcasts messages to gateways that forward the messages the LoRaWAN network server/cloud for processing. More details on LoRaWAN, its parameters and working is left for self study. An excellent resource can be found here: [LoRa Book][def]
+{: .Objective of the Lab }
+In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using LoRa transciever (node) interfaced with the MakerPi RP2040 board we have been using. The data will be broadcasted to and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before.
+# The Things Network (TTN)
+The Things Network provides a global, open LoRaWAN network with a set of open tools and to build an IoT application at low cost. We will be using TTN gateway for receiving our accelerometer data from a LoRa IoT node. To begin, navigate to [The Things Network Homepage](https://www.thethingsnetwork.org/). You will see the following page:
+![Screenshot of IDE](./assets/SC1 (ttn webpage).jpg)
+Click login as shown and choose **Experiment and explore with The Things Network** option. Use login detals as follows:
+Username: leeds_labs
+Password: lora1406@
 
-# Pulses Width Modulation (PWM)
-PWM signals are digital signals which alternate between **high** and **low** state. The duration for high state is also known as "on time" and the duration for the low state is called "off time". In order to describe the length of on time relative to off time, we use a metric called duty cycle. Duty cycle is described as percentage. It is percentage of time signal is in on state over a window of interval. For a periodic signal, its period of signal during which it assumes high state. 
+![LoRa Book][def]
 
-![LoRa Book](../global_assets/lorabook.pdf)
+# Setting up the board
 
-To create a tune, we just need to use PWM signal with a certain duty cycle to derive the output pin connected to Buzzer. The following snippet of the code will get you started:
+ Follow the following steps:
+1. Create a new folder called Lab 3.
+2. Navigate to this folder from Thonny IDE.
+3. Create two new files in this folder, one called **main.py** and other called **LoRaNet.py**.
+4. In **LoRaNet.py** file copy the code which is provide below.
 
 ```python
 from utime import sleep_ms
@@ -242,3 +252,6 @@ song = ["NOTE_BO","NOTE_C1"]
 Convert the arduino code into MicroPython code to Play Game of Thrones Tune. Then modify the tune to compose custom melody for LK.
 </details>
 
+
+
+[def]: ../global_assets/lorabook.pdf

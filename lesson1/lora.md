@@ -25,12 +25,12 @@ LoRA Wide Area Network (LoRaWAN) is a Media Access Control (MAC) layer protocol 
 In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using LoRa transciever (node) interfaced with the MakerPi RP2040 board we have been using. The data will be broadcasted to and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before.
 # The Things Network (TTN)
 The Things Network provides a global, open LoRaWAN network with a set of open tools and to build an IoT application at low cost. We will be using TTN gateway for receiving our accelerometer data from a LoRa IoT node. To begin, navigate to [The Things Network Homepage](https://www.thethingsnetwork.org/). You will see the following page:
-![Screenshot of IDE](./assets/SC1 (ttn webpage).jpg)
-Click login as shown and choose **Experiment and explore with The Things Network** option. Use login detals as follows:
-Username: leeds_labs
-Password: lora1406@
+![ScreenshotofIDE](./global_assets/SC1 (ttn webpage).jpg)
 
-![LoRa Book][def]
+Click login as shown and choose **Experiment and explore with The Things Network** option. Use login detals as follows:
+Email: leeds_labs
+Password: lora1406@
+Click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right ![ScreenshotofIDE](./global_assets/SC2 (ttn console).jpg)
 
 # Setting up the board
 

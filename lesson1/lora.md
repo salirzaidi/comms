@@ -17,7 +17,7 @@ usetocbot: true
 {:toc}
 ---
 
-# Tunes of LK
+# LoRa
 If you are superhero fan then it is no surprise that LK has several theme songs and tunes done as part of his brand identity. Besides this he can switch from light to acoustics, which propogate better under water. In this chapter, we will learn the art of creating tunes using PWM signals.
 
 {: .note }
@@ -26,23 +26,123 @@ Your board comes with the Buzzer is connected to GPIO22. To play a tune, you nee
 # Pulses Width Modulation (PWM)
 PWM signals are digital signals which alternate between **high** and **low** state. The duration for high state is also known as "on time" and the duration for the low state is called "off time". In order to describe the length of on time relative to off time, we use a metric called duty cycle. Duty cycle is described as percentage. It is percentage of time signal is in on state over a window of interval. For a periodic signal, its period of signal during which it assumes high state. 
 
-![PWM](../global_assets/duty.jpeg)
+![LoRa Book](../global_assets/lorabook.pdf)
 
 To create a tune, we just need to use PWM signal with a certain duty cycle to derive the output pin connected to Buzzer. The following snippet of the code will get you started:
 
 ```python
-import machine
-import time
-buzzer_pin = machine.Pin(22, machine.Pin.OUT)
-buz = machine.PWM(buzzer_pin)
-active_duty=50  # dutycycle
-Note_C6  = 1047
-buz.freq(Note_C6)
-buz.duty_u16(int(65535*(active_duty/100)))
-duration=0.15
-time.sleep(duration)
-buz.duty_u16(0)
-buz.deinit()
+from utime import sleep_ms
+from sys import exit
+
+class LoRaNet:
+    def __init__(self,uart,appKey):
+        self.uart = uart
+        self.appKey = appKey
+        self.band ='EU868'
+        self.channels='0-2'
+        self.join_EUI = None   # These are populated by this script
+        self.device_EUI = None
+        self.rxData = None
+        self.data=None
+        self.done=False
+        self.status = 'not connected'
+    
+    def receive_uart(self):
+        '''Polls the uart until all data is dequeued'''
+        self.rxData=bytes()
+        while self.uart.any()>0:
+            self.rxData += self.uart.read(1)
+            sleep_ms(2)
+        return self.rxData.decode('utf-8')
+    
+    def send_AT(self,command):
+        '''Wraps the "command" string with AT+ and \r\n'''
+        buffer = 'AT' + command + '\r\n'
+        self.uart.write(buffer)
+        sleep_ms(300)
+    
+    def test_uart_connection(self):
+        '''Checks for good UART connection by querying the LoRa-E5 module with a test command'''
+        self.send_AT('') # empty at command will query status
+        self.data = self.receive_uart()
+        if self.data == '+AT: OK\r\n' : print('LoRa radio is ready\n')
+        else:
+            print('LoRa-E5 detected\n')
+            exit()
+        
+    def get_eui_from_radio(self):
+        '''Reads both the DeviceEUI and JoinEUI from the device'''
+        self.send_AT('+ID=DevEui')
+        self.data = self.receive_uart()
+        self.device_EUI = self.data.split()[2]
+        self.send_AT('+ID=AppEui')
+        self.data = self.receive_uart()
+        self.join_EUI = self.data.split()[2]
+        print(f'JoinEUI: {self.join_EUI}\n DevEUI: {self.device_EUI}')
+        
+    def set_app_key(self,appKey):
+            if self.appKey is None:
+                print('\nGenerate an AppKey on cloud.thethings.network and enter it at the top of this script to proceed')
+                exit()
+            self.send_AT('+KEY=APPKEY,"' + self.appKey + '"')
+            self.receive_uart()
+            print(f' AppKey: {self.appKey}\n')
+    
+    
+    def configure_regional_settings(self, DR='0'):
+        ''' Configure band and channel settings'''
+    
+        self.send_AT('+DR=' + self.band)
+        self.send_AT('+DR=' + DR)
+        self.send_AT('+CH=NUM,' + self.channels)
+        self.send_AT('+MODE=LWOTAA')
+        self.receive_uart() # flush
+    
+        self.send_AT('+DR')
+        self.data = self.receive_uart()
+        print(self.data)
+    
+    
+    def join_the_things_network(self):
+        '''Connect to The Things Network. Exit on failure'''
+        self.send_AT('+JOIN')
+        self.data = self.receive_uart()
+    
+        print(self.data)
+
+        self.status = 'not connected'
+        while self.status == 'not connected':
+            self.data = self.receive_uart()
+            if len(self.data) > 0: print(self.data)
+            if 'joined' in self.data.split():
+                self.status = 'connected'
+            if 'failed' in self.data.split():
+                print('Join Failed')
+                exit()
+        
+            sleep_ms(1000)
+            
+    def send_message(self,message):
+        '''Send a string message'''
+        self.send_AT('+MSG="' + message + '"')
+
+        self.done = False
+        while not self.done:
+            self.data = self.receive_uart()
+            if 'Done' in self.data or 'ERROR' in self.data:
+                self.done = True
+            if len(self.data) > 0: print(self.data)
+            sleep_ms(1000)
+            
+    def send_hex(self,message):
+        self.send_AT('+MSGHEX="' + message + '"')
+        self.done = False
+        while not self.done:
+            self.data = self.receive_uart()
+            if 'Done' in self.data or 'ERROR' in self.data:
+                self.done = True
+            if len(self.data) > 0: print(self.data)
+            sleep_ms(1000)
 ```
 
 

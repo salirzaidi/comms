@@ -25,15 +25,15 @@ LoRA Wide Area Network (LoRaWAN) is a Media Access Control (MAC) layer protocol 
 In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using LoRa transciever (node) interfaced with the MakerPi RP2040 board we have been using. The data will be broadcasted to and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before.
 # The Things Network (TTN)
 The Things Network provides a global, open LoRaWAN network with a set of open tools and to build an IoT application at low cost. We will be using TTN gateway for receiving our accelerometer data from a LoRa IoT node. To begin, navigate to [The Things Network Homepage](https://www.thethingsnetwork.org/). You will see the following page:
-![ScreenshotofIDE](./assets/SC1 (ttn webpage).jpg)
+![ScreenshotofIDE1](./assets/SC1 (ttn webpage).jpg)
 
-Click login as shown and choose **Experiment and explore with The Things Network** option. Use login detals as follows:
+Click login as shown and choose **Experiment and explore with The Things Network** option. ![ScreenshotofIDE2](./assets/SC2 (ttn).jpg) On the next page, use login detals as follows:
 
 Email: leeds_labs
 
 Password: lora1406@
 
-Click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right ![ScreenshotofIDE](./assets/SC2 (ttn console).jpg)
+Then click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right as shown ![ScreenshotofIDE3](./assets/SC2 (ttn console).jpg). To configure regional settings, use United Kingdom from the **Device or gateway lcation** dropdown and select **Europe 1** from existing clusters. ![ScreenshotofIDE4](./assets/SC3 (ttn settings).jpg. Choose **Create Application** on the next page. ![ScreenshotofIDE5](./assets/SC4 (create app).jpg). Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application.
 
 # Setting up the board
 

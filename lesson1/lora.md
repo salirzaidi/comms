@@ -22,11 +22,11 @@ LoRa (Long Range) is radio frequency (RF) modulation technology that is suited f
 
 LoRA Wide Area Network (LoRaWAN) is a Media Access Control (MAC) layer protocol built on top of LoRa modulation. It is a software layer which defines how devices use the LoRa hardware, for example when they transmit, and the format of messages. A LoRa network consists of nodes, gateways and LoRa network operators. Typically, nodes broadcast data to be picked up by gateways that forward the information to operator servers for processing.A LoRa transmitter broadcasts messages to gateways that forward the messages the LoRaWAN network server/cloud for processing. More details on LoRaWAN, its parameters and working is left for self study. An excellent resource can be found here: [LoRa Book][def]
 {: .Objective of the Lab }
-In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using LoRa transciever (node) interfaced with the MakerPi RP2040 board we have been using. The data will be broadcasted to and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before.
+In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using Seeed LoRa-E5 module interfaced with the MakerPi RP2040 board we have been using. Seeed LoRa-E5 is a compacted-sized development board suitable for the rapid testing and building of small-size prototyping and helps you design your ideal LoRaWAN wireless IoT device with a long-distance transmission range. The data will be broadcasted to and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before. To setup, please follow instructions from previous lab.
 # The Things Network (TTN)
 The Things Network provides a global, open LoRaWAN network with a set of open tools and to build an IoT application at low cost. We will be using TTN gateway for receiving our accelerometer data from a LoRa IoT node.
 
-
+## Creating a new IoT application
 To begin, navigate to [The Things Network Homepage](https://www.thethingsnetwork.org/). You will see the following page:
 ![ScreenshotofIDE1](./assets/SC1 (ttn webpage).jpg)
 
@@ -38,18 +38,15 @@ Password: lora1406@
 
 Then click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right as shown ![ScreenshotofIDE3](./assets/SC2 (ttn console).jpg). To configure regional settings, use United Kingdom from the **Device or gateway lcation** dropdown and select **Europe 1** from existing clusters. ![ScreenshotofIDE4](./assets/SC3 (ttn settings).jpg. Choose **Create Application** on the next page. ![ScreenshotofIDE5](./assets/SC4 (create app).jpg)
 
-Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application. Once you have successfully created an application, it will appear in the list of existing applications and can be accessed from the **Applications** tab on the top of the TTN webpage. 
+Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application. Once you have successfully created an application, it will appear in the list of existing applications and can be accessed from the **Applications** tab on the top of the TTN webpage.  
 
-It is now time to configure the application and associate an end IoT node with it. For this, click on the **Register Device** button at the bottom right corner of your newly created application's page as shown in the figure ![ScreenshotofIDE6](./assets/SC6.jpg)
-
-
-# Setting up the board
-
- Follow the following steps:
-1. Create a new folder called Lab 3.
-2. Navigate to this folder from Thonny IDE.
-3. Create two new files in this folder, one called **main.py** and other called **LoRaNet.py**.
-4. In **LoRaNet.py** file copy the code which is provide below.
+## Registering a new device
+To register an IoT end node, we need to specify it Device Extended Uniques Identifies (DevEUI). The DevEUI is  64-bit globally-unique ID assigned by the manufacturer, or the owner, of the end-device. We first need to extract this from our LoRa board which is connected to the RP2040. For this purpose, complete the following steps:
+1. Plug in the RP2040 to the lab computer. 
+2. Create a new folder called Lab 3.
+3. Navigate to this folder from Thonny IDE.
+4. Create two new files in this folder, one called **main.py** and other called **LoRaNet.py**.
+5. In **LoRaNet.py** file copy the code which is provide below.
 
 ```python
 from utime import sleep_ms
@@ -166,10 +163,37 @@ class LoRaNet:
             sleep_ms(1000)
 ```
 
+6. In **main.py** copy the following code:
 
+```python
+from machine import Pin,I2C,UART
+from utime import sleep_ms
+from accelerometer import ADXL345
+from LoRaNet import LoRaNet
+import ubinascii
+
+i2c = I2C(1,sda=Pin(2),scl=Pin(3), freq=10000)
+uart1 = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5))
+app_key = NONE  
+adx = ADXL345(i2c)
+loranet = LoRaNet(uart1,app_key)
+
+def i2b(number):
+    c = (number >> 8) & 0xff
+    f = number & 0xff
+    return c,f
+
+loranet.test_uart_connection()
+loranet.get_eui_from_radio()
+
+```
+Run the code to get the following output which provides you 
+
+It is now time to configure the application and associate an end IoT node with it. For this, click on the **Register End Device** button at the bottom right corner of your newly created application's page as shown in the figure ![ScreenshotofIDE6](./assets/SC6.jpg)
 <details>
 <summary>Task 1</summary>
-Try converting above code into a function which takes note and the duration as input and plays tune for that duration
+Try converting above code into a function which takes note and the duration as input and plays tune for that duration.
+
 </details>
 
 # Songs of LK

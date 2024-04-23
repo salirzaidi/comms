@@ -38,7 +38,9 @@ Password: lora1406@
 
 Then click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right as shown ![ScreenshotofIDE3](./assets/SC2 (ttn console).jpg). To configure regional settings, use United Kingdom from the **Device or gateway lcation** dropdown and select **Europe 1** from existing clusters. ![ScreenshotofIDE4](./assets/SC3 (ttn settings).jpg. Choose **Create Application** on the next page. ![ScreenshotofIDE5](./assets/SC4 (create app).jpg)
 
-Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application.
+Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application. Once you have successfully created an application, it will appear in the list of existing applications and can be accessed from the **Applications** tab on the top of the TTN webpage. 
+
+It is now time to configure the application and associate an end IoT node with it. For this, click on the **Register Device** button at the bottom right corner of your newly created application's page as shown in the figure ![ScreenshotofIDE6](./assets/SC6.jpg)
 
 
 # Setting up the board

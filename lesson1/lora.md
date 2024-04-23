@@ -291,6 +291,14 @@ At TTN, you will see something similar:
 
 ![ScreenshotofIDE12](./assets/SC12.jpg)
 
+{: . Important Note }
+On The Things Network's a Fair Use Policy applies which limits the uplink airtime to 30 seconds per day (24 hours) per node and the downlink messages to 10 messages per day (24 hours) per node. Note that in the latest code, the function sleep_ms() restricting the transmission of data to once every minute. However, if the code continues to run for a while, you will soon exhaust the fair use policy allowance and will not be allowed to transmit for the next 24 hours. It is important to keep this in mind and stop the code from running while you are coding and leaving the desk. You also need to set a sensible transmission schedule by changing the multiplier in the argument of the sleep_ms() function. For example, if you change it to timeConstant*5, it will transmit once every 5 minutes. 
+
+<details>
+<summary>Task 2</summary>
+Add new functionality which reads changes in x, y, and z data from the accelerometer and transmits data only when there is a siginifcant change in data.
+</details>
+
 You can save this in a separate file and call it **notes.py**. You can then import the musical notes into your main program as follow:
 
 ```python
@@ -305,10 +313,7 @@ You can upload multiple files to the board by selecting files while pressng CTRL
 song = ["NOTE_BO","NOTE_C1"]
 ```
 
-<details>
-<summary>Task 2</summary>
-Convert the arduino code into MicroPython code to Play Game of Thrones Tune. Then modify the tune to compose custom melody for LK.
-</details>
+
 
 
 

@@ -208,6 +208,8 @@ It is now time to configure the application and associate an end IoT node with i
  5. Similarly provide the **DevEUI**
  6. Click **Generate** to populate the AppKey field
  7. Finish by clicking **Register end device** button at the bottom of the page.
+
+ ![ScreenshotofIDE9](./assets/SC9.jpg)
 <details>
 <summary>Task 1</summary>
 Try converting above code into a function which takes note and the duration as input and plays tune for that duration.

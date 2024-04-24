@@ -372,7 +372,7 @@ function decodeUplink(input) {
 You can test the received payload using the Test panel on the right. Paste the contents of the payload in the **Byte Payload** text box and press the **Test Decoder** button. It will show the readings of the accelerometer which can be cross checked with output Thonny output when data was successfully sent. The two payloads will match.
 
 
-![ScreenshotofIDE12](./assets/SC12.jpg)
+![ScreenshotofIDE13](./assets/SC13.jpg)
 
 
 

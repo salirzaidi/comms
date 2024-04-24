@@ -31,9 +31,18 @@ The Things Network provides a global, open LoRaWAN network with a set of open to
 
 ## Creating a new IoT application
 To begin, navigate to [The Things Network Homepage](https://www.thethingsnetwork.org/). You will see the following page:
+
+
 ![ScreenshotofIDE1](./assets/SC1 (ttn webpage).jpg)
 
-Click login as shown and choose **Experiment and explore with The Things Network** option. ![ScreenshotofIDE2](./assets/SC2 (ttn).jpg) On the next page, use login detals as follows:
+
+
+Click login as shown and choose **Experiment and explore with The Things Network** option. 
+
+![ScreenshotofIDE2](./assets/SC2 (ttn).jpg) 
+
+
+On the next page, use login detals as follows:
 
 Email: leeds_labs
 
@@ -41,7 +50,10 @@ Password: lora1406@
 
 Then click **Login with The Things ID**. After loggin in, click on console from the user drop down menu on the right as shown ![ScreenshotofIDE3](./assets/SC2 (ttn console).jpg). To configure regional settings, use United Kingdom from the **Device or gateway lcation** dropdown and select **Europe 1** from existing clusters. ![ScreenshotofIDE4](./assets/SC3 (ttn settings).jpg. Choose **Create Application** on the next page. 
 
+
 ![ScreenshotofIDE5](./assets/SC4 (create app).jpg)
+
+
 
 Enter a unique Application ID on the following screen along with an **Accelerometer Test** as application name and description in respective text boxes as shown. Click create application button. Try out a few if the one you entered already exists untill you have a unique ID to create an application. Once you have successfully created an application, it will appear in the list of existing applications and can be accessed from the **Applications** tab on the top of the TTN webpage.  
 
@@ -192,13 +204,21 @@ loranet.test_uart_connection()
 loranet.get_eui_from_radio()
 
 ```
-Run the code to get the following output which provides you DevEUI and JoinEUI. Copy this from the Thonny output as shown below. 
+Run the code to get the following output which provides you DevEUI and JoinEUI. Copy this from the Thonny output as shown below.
+
+
 
 ![ScreenshotofIDE7](./assets/SC7.jpg)
 
+
+
 It is now time to configure the application and associate an end IoT node with it. For this, click on the **Register End Device** button at the bottom right corner of your newly created application's page as shown in the screenshot below.
 
+
+
  ![ScreenshotofIDE6](./assets/SC6.jpg)
+
+
 
  You will be taken to the device specification page. Here, fill in the following information:
  1. Choose **Select the end device in the LoRaWAN Device Repository** in the inpt method for end device type section.
@@ -212,7 +232,11 @@ It is now time to configure the application and associate an end IoT node with i
  6. Click **Generate** to populate the AppKey field. The AppKey is an AES-128 bit secret key known as the root key. The same AppKey should be provisioned onto the device which is registering with the TTN appliaction (we will do this later).
  7. Finish by clicking **Register end device** button at the bottom of the page.
 
+
+
  ![ScreenshotofIDE9](./assets/SC9.jpg)
+
+
 
 <details>
 <summary>Task 1</summary>
@@ -222,7 +246,10 @@ Device Registration is now complete. Locate this deivce in your newly created ap
 ## Joining TTN
 To join TTN, the end node needs to be provisioned with the same application key (AppKey) as associated with the device in the TTN application we created and copied to clipboard in task 1 above. See screeshot below if you have not been able to find it.
 
+
 ![ScreenshotofIDE10](./assets/SC10.jpg)
+
+
 
  To add this to the LoRa node, find the statement appKey='NONE' in main.py and replace 'NONE' with the copied appKey by pasting it as follows. 
 
@@ -242,6 +269,7 @@ loranet.join_the_things_network()
 ```
 
 Now observe the live data received at the TTN gateway by navigating to **Live Data** tab of the device. Observe the messages on TTN. You should see te following joining confirmation:
+
 
 ![ScreenshotofIDE11](./assets/SC11.jpg)
 
@@ -292,7 +320,10 @@ while True:
 ```
 At TTN, you will see a similar payload as in the screenshot below. You can copy the payload by using the copy option next to it.
 
+
 ![ScreenshotofIDE12](./assets/SC12.jpg)
+
+
 
 {: .note }
 On The Things Network's a Fair Use Policy applies which limits the uplink airtime to 30 seconds per day (24 hours) per node and the downlink messages to 10 messages per day (24 hours) per node. Note that in the latest code, the function sleep_ms() restricting the transmission of data to once every minute. However, if the code continues to run for a while, you will soon exhaust the fair use policy allowance and will not be allowed to transmit for the next 24 hours. It is important to keep this in mind and stop the code from running while you are coding and leaving the desk. You also need to set a sensible transmission schedule by changing the multiplier in the argument of the sleep_ms() function. For example, if you change it to timeConstant*5, it will transmit once every 5 minutes. 
@@ -339,6 +370,8 @@ function decodeUplink(input) {
 }
 ```
 You can test the received payload using the Test panel on the right. Paste the contents of the payload in the **Byte Payload** text box and press the **Test Decoder** button. It will show the readings of the accelerometer which can be cross checked with output Thonny output when data was successfully sent. The two payloads will match.
+
+
 ![ScreenshotofIDE12](./assets/SC12.jpg)
 
 

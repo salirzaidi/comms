@@ -22,7 +22,10 @@ LoRa (Long Range) is radio frequency (RF) modulation technology that is suited f
 
 LoRA Wide Area Network (LoRaWAN) is a Media Access Control (MAC) layer protocol built on top of LoRa modulation. It is a software layer which defines how devices use the LoRa hardware, for example when they transmit, and the format of messages. A LoRa network consists of nodes, gateways and LoRa network operators. Typically, nodes broadcast data to be picked up by gateways that forward the information to operator servers for processing.A LoRa transmitter broadcasts messages to gateways that forward the messages the LoRaWAN network server/cloud for processing. More details on LoRaWAN, its parameters and working is left for self study. An excellent resource can be found here: [LoRa Book][def]
 {: .Objective of the Lab }
+{: .note }
 In this lab, you will learn some basics about the tecnhology along as well as send your accelerometer data (x,y,z) from previous lab using Seeed LoRa-E5 module interfaced with the MakerPi RP2040 board we have been using. Seeed LoRa-E5 is a compacted-sized development board suitable for the rapid testing and building of small-size prototyping and helps you design your ideal LoRaWAN wireless IoT device with a long-distance transmission range. The data will be broadcasted and will be picked up by one of The Things Network (TTN) gateways deployed across Leeds. You will be using Thonny IDE for coding as before. To setup, please follow instructions from previous lab.
+
+
 # The Things Network (TTN)
 The Things Network provides a global, open LoRaWAN network with a set of open tools and to build an IoT application at low cost. We will be using TTN gateway for receiving our accelerometer data from a LoRa IoT node.
 
@@ -300,7 +303,7 @@ On The Things Network's a Fair Use Policy applies which limits the uplink airtim
 Add new functionality which reads changes in x, y, and z data from the accelerometer and transmits data only when there is a siginifcant change in data.
 </details>
 
-# Decoding the payload
+# Decoding the Payload
 
 
 

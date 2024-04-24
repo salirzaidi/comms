@@ -176,7 +176,7 @@ import ubinascii
 
 i2c = I2C(1,sda=Pin(2),scl=Pin(3), freq=10000)
 uart1 = UART(1, baudrate=9600, tx=Pin(4), rx=Pin(5))
-app_key = NONE  
+app_key = None 
 adx = ADXL345(i2c)
 loranet = LoRaNet(uart1,app_key)
 
@@ -287,34 +287,25 @@ while True:
 
 
 ```
-At TTN, you will see something similar:
+At TTN, you will see a similar payload:
 
 ![ScreenshotofIDE12](./assets/SC12.jpg)
 
 {: . Important Note }
 On The Things Network's a Fair Use Policy applies which limits the uplink airtime to 30 seconds per day (24 hours) per node and the downlink messages to 10 messages per day (24 hours) per node. Note that in the latest code, the function sleep_ms() restricting the transmission of data to once every minute. However, if the code continues to run for a while, you will soon exhaust the fair use policy allowance and will not be allowed to transmit for the next 24 hours. It is important to keep this in mind and stop the code from running while you are coding and leaving the desk. You also need to set a sensible transmission schedule by changing the multiplier in the argument of the sleep_ms() function. For example, if you change it to timeConstant*5, it will transmit once every 5 minutes. 
 
+{: . Important Note }
 <details>
 <summary>Task 2</summary>
 Add new functionality which reads changes in x, y, and z data from the accelerometer and transmits data only when there is a siginifcant change in data.
 </details>
 
-You can save this in a separate file and call it **notes.py**. You can then import the musical notes into your main program as follow:
-
-```python
-import notes
-
-print(notes.music)
-```
-
-You can upload multiple files to the board by selecting files while pressng CTRL button on your keyboard. A song is combination of notes and durations for each note. See for instance a [Game of throne](https://github.com/hibit-dev/buzzer/blob/master/src/movies/game_of_thrones/game_of_thrones.ino) song and notes associated. This is obviously written in C for Arduino devices. We can create same song in MicroPython as a list e.g.
-
-```python
-song = ["NOTE_BO","NOTE_C1"]
-```
+# Decoding the payload
 
 
 
+{: .note }
+I am fully aware of how dull my students find blinking bunch of LEDs. Bear with me for this lab and we will not only learn the syntax but also see what is possible by merely blinking LEDs.
 
 
 [def]: ../global_assets/lorabook.pdf
